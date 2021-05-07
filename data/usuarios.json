@@ -1,0 +1,20 @@
+[
+
+    {
+        "nombre":"Carlos",
+        "apellido":"Santa",
+        "direccion":"Costa 230",
+        "pais":"Chile"
+    },
+    {
+        "nombre":"Jose",
+        "apellido":"Matrs",
+        "direccion":"Costa 230",
+        "pais":"Peru"
+    },
+    {        
+        "nombre":"Maria",
+        "apellido":"Maria",
+        "direccion":"CostaBrava 230",
+        "pais":"Chile"}
+]
