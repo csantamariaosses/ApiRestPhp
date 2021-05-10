@@ -47,17 +47,22 @@ class Usuario {
         $this->ciudad = $ciudad;
     }
 
-    public function guardarUsuarios(){
+    public function guardarUsuario(){
         $contenidoArchivo = file_get_contents("../data/usuarios.json");
         $usuarios = json_decode( $contenidoArchivo, true);
         $usuarios[] = array (
-            "nombre"=> $this=>nombre,
-            "apellido"=> $this=>apellido,
-            "direccion"=> $this=>direccion,
-            "ciudad"=> $this=>ciudad
+            "nombre"=> $this->nombre,
+            "apellido"=> $this->apellido,
+            "direccion"=> $this->direccion,
+            "ciudad"=> $this->ciudad
         );
         $archivo = fopen("../data/usuarios.json","w");
-        fwrite( $arcivo, json_encode( $usuarios ));
+        fwrite( $archivo, json_encode( $usuarios ));
         fclose( $archivo ); 
+     }
+
+     public static function obtenerUsuarios(){
+        $contenidoArchivo = file_get_contents("../data/usuarios.json");
+        return $contenidoArchivo;
      }
 }

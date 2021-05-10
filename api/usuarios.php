@@ -1,13 +1,16 @@
 <?php
-echo "Method HTTP:" . $_SERVER['REQUEST_METHOD'];
-echo "\nInfo:" . file_get_contents('php://input');
+//echo "Method HTTP:" . $_SERVER['REQUEST_METHOD'];
+//echo "\nInfo:" . file_get_contents('php://input');
 
+include_once("../Usuario.php");
 $mensaje  = "";
 header("Content-Type:application/json");
 switch( $_SERVER['REQUEST_METHOD'] ) {
     case 'POST':
         $_POST = json_decode( file_get_contents('php://input'), true);  
-        $resultado["mensaje"] = "Guardar Usuario, Info:" json_encode( $_POST);
+        $usuario = new Usuario( $_POST['nombre'], $_POST['apellido'], $_POST['direccion'], $_POST['ciudad']);
+        $usuario->guardarUsuario();
+        $resultado["mensaje"] = "Guardar Usuario, Info:". json_encode( $_POST);
         echo json_encode( $resultado );
         break;
     case 'GET':
@@ -15,8 +18,7 @@ switch( $_SERVER['REQUEST_METHOD'] ) {
             $resultado["mensaje"] = "Retornar usuario con el id:" . $_GET['id'];
             echo json_encode( $resultado );
         } else {
-            $resultado["mensaje"] = "Retornar todos los usuarios";
-            echo json_encode( $resultado );
+            echo Usuario::obtenerUsuarios();
         }
       
         break;
@@ -28,7 +30,7 @@ switch( $_SERVER['REQUEST_METHOD'] ) {
         echo json_encode( $resultado );
         break;
     case 'DELETE':
-        $resultado["mensaje"] = "Eliminar Usuario con el id:" . $_GET['id'].
+        $resultado["mensaje"] = "Eliminar Usuario con el id:" . $_GET['id'];
         echo json_encode( $resultado );
         break;
 }
