@@ -1,0 +1,1 @@
+console.log("js archivo externo mismo directorio");

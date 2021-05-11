@@ -65,4 +65,54 @@ class Usuario {
         $contenidoArchivo = file_get_contents("../data/usuarios.json");
         return $contenidoArchivo;
      }
+
+     public function actualizarUsuario( $indice ) {
+
+
+        $contenidoArchivo = file_get_contents("../data/usuarios.json");
+        $usuarios = json_decode( $contenidoArchivo, true);
+
+        
+        $usuario = array (
+            "nombre" => $this->nombre,
+            "apellido" => $this->apellido,
+            "direccion" => $this->direccion,
+            "ciudad" => $this->ciudad
+        );
+
+        $usuarios[ $indice ] = $usuario;
+        $archivo = fopen( "../data/usuarios.json", "w");
+        fwrite( $archivo, json_encode( $usuarios ));
+        fclose( $archivo );
+
+     }
+
+
+     public static function eliminarUsuario( $indice ) {
+        $contenidoArchivo = file_get_contents("../data/usuarios.json");
+        $usuarios = json_decode( $contenidoArchivo, true);
+        console.log("eliM de:",$usuarios);
+        console.log("indice:",$indice);
+
+        array_splice( $usuarios, $indice, 1);
+
+        $archivo = fopen( "../data/usuarios.json", "w");
+        fwrite( $archivo, json_encode( $usuarios ));
+        fclose( $archivo );
+     }
+
+     public static function obtenerUsuario( $indice ) {
+        $contenidoArchivo = file_get_contents("../data/usuarios.json");
+        $usuarios = json_decode( $contenidoArchivo, true);
+
+        $usuario = $usuarios[ $indice ];
+        return $usuario; 
+     }
+
+
+     public function console_log( $data ){
+        echo '<script>';
+        echo 'console.log('. json_encode( $data ) .')';
+        echo '</script>';
+      }
 }
