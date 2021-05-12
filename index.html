@@ -9,16 +9,31 @@
 </head>
 <body>
     <div class="container">
+        <div class="row mt-4">
+            <div class="col-12"><h4>API Rest Php, Axios, datos en archivo.json</h4></div>
+        </div>
+        <div class="row mt-4">
+            <div class="col-12"><span id="msg"></span></div>
+        </div>
+        <div class="row">
+            <div class="col-12 mt-3">
+                <form>
+                    <table>
+                        <tr><td>Nombre</td><td><input type="text" name="nombre" id="nombre" class="form-control input-sm" onClick="limpiarMsg()" required></td></tr>
+                        <tr><td>Apellido</td><td><input type="text" name="apellido" id="apellido" class="form-control input-sm" onClick="limpiarMsg()" required></td></tr>
+                        <tr><td>Direccion</td><td><input type="text" name="direccion" id="direccion" class="form-control input-sm" onClick="limpiarMsg()" required></td></tr>
+                        <tr><td>Ciudad</td><td><input type="text" name="ciudad" id="ciudad" class="form-control input-sm" onClick="limpiarMsg()" required></td></tr>
+                    </table>
+                    <button type="button" class="btn btn-primary" onClick="guardarUsuario(event)">Guardar</button>
+                    <button type="button" class="btn btn-primary" onClick="actualizarUsuario(event)" style="display:none">Actualizar</button>
+                    <button type="button" class="btn btn-primary" onClick="nuevoUsuario(event)">Nuevo</button>
+                </form>
         
-            <table>
-                <tr><td>Nombre</td><td><input type="text" name="nombre" id="nombre" class="form-control input-sm"></td></tr>
-                <tr><td>Apellido</td><td><input type="text" name="apellido" id="apellido" class="form-control input-sm"></td></tr>
-                <tr><td>Direccion</td><td><input type="text" name="direccion" id="direccion" class="form-control input-sm"></td></tr>
-                <tr><td>Ciudad</td><td><input type="text" name="ciudad" id="ciudad" class="form-control input-sm"></td></tr>
-            </table>
-            <button type="button" class="btn btn-primary" onClick="guardarUsuario(event)">Guardar</button>
-            <button type="button" class="btn btn-primary" onClick="actualizarUsuario(event)">Actualizar</button>
-            <button type="button" class="btn btn-primary">Nuevo</button>
+
+            </div>
+        </div>
+    
+            
         
             
         

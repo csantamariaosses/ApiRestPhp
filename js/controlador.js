@@ -52,20 +52,35 @@ function eliminarUsuario( indice ) {
         url:`api/usuarios.php?id=${indice}`,
         responseType: "json"
     }).then(  resp => { 
-        console.log("Borrando....")
-        //usuarios = resp.data;
+        console.log("Borrado....")
         obtenerUsuarios();
         llenarTabla();
         
     }).catch( error => console.error( error));
 
-}
+} 
 
 
 function guardarUsuario(event){
     event.preventDefault();
     console.log("Guardar usuario");
-    
+
+    let nombre = document.getElementById("nombre").value;
+    let apellido = document.getElementById("apellido").value;
+    let direccion = document.getElementById("direccion").value;
+    let ciudad = document.getElementById("ciudad").value;
+
+
+    if( nombre.length == 0  || apellido.length == 0  || direccion.length == 0 || ciudad.length == 0) {
+        //msg = "Debe ingresar todos los campos";
+        document.getElementById("msg").style.color = "red";
+        document.getElementById("msg").innerHTML  = "Debe ingresar todos los campos";
+        //alert("Debe ingresar todos los campos");
+        return;
+    }
+
+
+
     let usuario = {
         nombre : document.getElementById("nombre").value,
         apellido : document.getElementById("apellido").value,
@@ -106,6 +121,7 @@ function llenarCampos( data ) {
     document.getElementById("ciudad").value = data.ciudad;
 }
 
+
 function editarUsuario( indice ) {
     usuarioElegido = indice;
     axios ({
@@ -116,12 +132,7 @@ function editarUsuario( indice ) {
         usuario = resp.data;
         console.log( indice );
         console.log( resp.data );
-
         llenarCampos( resp.data );
-       
-        //obtenerUsuarios();
-        //llenarTabla();
-        //limpiarCampos();
     }).catch( error => console.error( error));   
 }
 
@@ -145,9 +156,20 @@ function actualizarUsuario() {
         data : usuario
     }).then(  resp => { 
         console.log( resp  );
-    }).catch( error => console.error( error))  
+    }).catch( error => console.error( error));  
 
     obtenerUsuarios();
     llenarTabla();
     limpiarCampos();
 } 
+
+
+function limpiarMsg() {
+    //document.getElementById("msg").style.color = "red";
+    document.getElementById("msg").innerHTML  = "";
+}
+
+
+function nuevoUsuario(event){
+    limpiarCampos();
+}

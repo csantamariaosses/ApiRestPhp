@@ -35,9 +35,8 @@ switch( $_SERVER['REQUEST_METHOD'] ) {
         echo json_encode( $_POST );
         break;
     case 'DELETE':
-        echo "DELETE";  
         $resultado["mensaje"] = "API::Eliminar Usuario con el id:" . $_GET['id'];
         echo json_encode( $resultado );
-        //Usuario::eliminarUsuario(  $_GET['id'] );
+        Usuario::eliminarUsuario(  $_GET['id'] );
         break;
 }
