@@ -20,6 +20,12 @@ function obtenerUsuarios() {
 
 obtenerUsuarios();
 llenarTabla();
+deshabilitarBotones();
+
+
+function deshabilitarBotones() {
+    document.getElementById("btnActualizar").disabled = true;
+}
 
 function llenarTabla(){
 
@@ -65,6 +71,8 @@ function guardarUsuario(event){
     event.preventDefault();
     console.log("Guardar usuario");
 
+    
+
     let nombre = document.getElementById("nombre").value;
     let apellido = document.getElementById("apellido").value;
     let direccion = document.getElementById("direccion").value;
@@ -79,6 +87,9 @@ function guardarUsuario(event){
         return;
     }
 
+    console.log("deshabilita Guardar");
+    document.getElementById("btnGuardar").disabled = true;
+    document.getElementById("btnGuardar").innerHTML = "Guardando...";
 
 
     let usuario = {
@@ -100,9 +111,13 @@ function guardarUsuario(event){
         obtenerUsuarios();
         llenarTabla();
         limpiarCampos();
+
     }).catch( error => console.error( error));
 
-
+    console.log("habilita Guardar");
+    
+    document.getElementById("btnGuardar").innerHTML = "Guardar";
+    document.getElementById("btnGuardar").disabled = false;
 }   
 
 
@@ -124,6 +139,10 @@ function llenarCampos( data ) {
 
 function editarUsuario( indice ) {
     usuarioElegido = indice;
+    document.getElementById("btnGuardar").disabled = true;
+    document.getElementById("btnActualizar").disabled = false;
+    document.getElementById("btnActualizar").style.display = "inline";
+
     axios ({
         method:"GET",
         url:`api/usuarios.php?id=${indice}`,
@@ -161,6 +180,9 @@ function actualizarUsuario() {
     obtenerUsuarios();
     llenarTabla();
     limpiarCampos();
+ 
+    document.getElementById("btnGuardar").disabled = false;
+    document.getElementById("btnActualizar").disabled = true;
 } 
 
 
@@ -172,4 +194,6 @@ function limpiarMsg() {
 
 function nuevoUsuario(event){
     limpiarCampos();
+    document.getElementById("btnGuardar").disabled = false;
+    document.getElementById("btnActualizar").disabled = true;
 }

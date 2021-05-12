@@ -24,9 +24,12 @@
                         <tr><td>Direccion</td><td><input type="text" name="direccion" id="direccion" class="form-control input-sm" onClick="limpiarMsg()" required></td></tr>
                         <tr><td>Ciudad</td><td><input type="text" name="ciudad" id="ciudad" class="form-control input-sm" onClick="limpiarMsg()" required></td></tr>
                     </table>
-                    <button type="button" class="btn btn-primary" onClick="guardarUsuario(event)">Guardar</button>
-                    <button type="button" class="btn btn-primary" onClick="actualizarUsuario(event)" style="display:none">Actualizar</button>
-                    <button type="button" class="btn btn-primary" onClick="nuevoUsuario(event)">Nuevo</button>
+                    <div>
+                        <button type="button" id="btnGuardar" class="btn btn-primary" onClick="guardarUsuario(event)">Guardar</button>
+                        <button type="button" id="btnActualizar" class="btn btn-primary" onClick="actualizarUsuario(event)">Actualizar</button>
+                        <button type="button" class="btn btn-primary" onClick="nuevoUsuario(event)">Nuevo</button>
+                    </div>
+                    
                 </form>
         
 
